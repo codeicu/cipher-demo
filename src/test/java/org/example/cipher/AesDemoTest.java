@@ -25,9 +25,9 @@ class AesDemoTest {
     }
 
     void test(String text,String seed){
-        byte[] encrypt = AesDemo.encrypt(text.getBytes(),seed.getBytes());
+        byte[] encrypt = AESDemo.encrypt(text.getBytes(),seed.getBytes());
         System.out.println(Arrays.toString(encrypt));
-        byte[] decrypt = AesDemo.decrypt(encrypt,seed.getBytes());
+        byte[] decrypt = AESDemo.decrypt(encrypt,seed.getBytes());
         System.out.println(Arrays.toString(decrypt));
         assertEquals(text,new String(decrypt));
     }

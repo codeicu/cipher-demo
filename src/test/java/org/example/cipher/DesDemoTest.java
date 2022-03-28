@@ -2,12 +2,6 @@ package org.example.cipher;
 
 import org.junit.jupiter.api.Test;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,9 +26,9 @@ class DesDemoTest {
     }
 
     void test(String text,String seed){
-        byte[] encrypt = DesDemo.encrypt(text.getBytes(),seed.getBytes());
+        byte[] encrypt = DESDemo.encrypt(text.getBytes(),seed.getBytes());
         System.out.println(Arrays.toString(encrypt));
-        byte[] decrypt = DesDemo.decrypt(encrypt,seed.getBytes());
+        byte[] decrypt = DESDemo.decrypt(encrypt,seed.getBytes());
         System.out.println(Arrays.toString(decrypt));
         assertEquals(text,new String(decrypt));
     }

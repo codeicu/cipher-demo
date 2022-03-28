@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
-public class DesDemo {
+public class DESDemo {
     private static final String DES_STR = "DES";
 
     public static byte[] encrypt(byte[] text, byte[] seed) {
