@@ -8,28 +8,32 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 public class DesDemo {
-    private static byte[] arr = {1,2,3,4,5,6,7,8};
+    private static final String DES_STR = "DES";
 
-    public static byte[] encrypt(byte[] text) throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
-        DESKeySpec keySpec =new DESKeySpec(arr);
-        SecretKeyFactory des = SecretKeyFactory.getInstance("DES");
-        SecretKey secretKey = des.generateSecret(keySpec);
-        Cipher cipher = Cipher.getInstance("DES");
-        cipher.init(Cipher.ENCRYPT_MODE,secretKey);
-        byte[] content = cipher.doFinal(text);
-        return content;
+    public static byte[] encrypt(byte[] text, byte[] seed) {
+        try {
+            DESKeySpec keySpec = new DESKeySpec(seed);
+            SecretKeyFactory des = SecretKeyFactory.getInstance(DES_STR);
+            SecretKey secretKey = des.generateSecret(keySpec);
+            Cipher cipher = Cipher.getInstance(DES_STR);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            byte[] content = cipher.doFinal(text);
+            return content;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static byte[] decrypt(byte[] text){
+    public static byte[] decrypt(byte[] text, byte[] seed) {
         try {
-            DESKeySpec keySpec = new DESKeySpec(arr);
-            SecretKeyFactory des = SecretKeyFactory.getInstance("DES");
+            DESKeySpec keySpec = new DESKeySpec(seed);
+            SecretKeyFactory des = SecretKeyFactory.getInstance(DES_STR);
             SecretKey secretKey = des.generateSecret(keySpec);
-            Cipher cipher = Cipher.getInstance("DES");
-            cipher.init(Cipher.DECRYPT_MODE,secretKey);
+            Cipher cipher = Cipher.getInstance(DES_STR);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] res = cipher.doFinal(text);
             return res;
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
